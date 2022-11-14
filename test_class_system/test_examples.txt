@@ -1,0 +1,20 @@
+Diary unit tests:
+initialize; all => empty array
+
+
+Diary Entry unit tests:
+initialize; title
+initialize; contents
+initialze; count words
+initialize; reading_time
+initialize; reading_chunk
+
+
+Integration tests:
+initialize; add; all
+initialize; add; count_words
+initialize; add; add; count_words
+initialize; add; add; reading_time
+initialize; add; add find_best_entry_for_reading_time
+
+

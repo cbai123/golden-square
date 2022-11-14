@@ -47,14 +47,14 @@ RSpec.describe "Diary integration" do
     end
   end
 
-  context "#find_best_entry_for_reading_time method"do
+  describe "#find_best_entry_for_reading_time method"do
     it "returns the entry that can be read exactly" do
       diary = Diary.new
       entry_1 = DiaryEntry.new("title", "one two")
       entry_2 = DiaryEntry.new("title", "four five six seven")
       diary.add(entry_1)
       diary.add(entry_2)
-      expect(diary.find_best_entry_for_reading_time(2,1)).to eq "title: one two"
+      expect(diary.find_best_entry_for_reading_time(2,1)).to eq entry_1
     end
 
     it "returns the largest entry that can be read when not exact" do
@@ -64,7 +64,17 @@ RSpec.describe "Diary integration" do
       entry_3 = DiaryEntry.new("title", "eleven twelve thirteen")
       diary.add(entry_1)
       diary.add(entry_2)
-      expect(diary.find_best_entry_for_reading_time(5,1)).to eq "title: seven eight nine ten"
+      expect(diary.find_best_entry_for_reading_time(5,1)).to eq entry_2
+    end
+
+    it "fails when all entries are too large" do
+      diary = Diary.new
+      entry_1 = DiaryEntry.new("title", "one two three four five six")
+      entry_2 = DiaryEntry.new("title", "seven eight nine ten")
+      entry_3 = DiaryEntry.new("title", "eleven twelve thirteen")
+      diary.add(entry_1)
+      diary.add(entry_2)
+      expect{diary.find_best_entry_for_reading_time(1,1)}.to raise_error "No readable entries"
     end
   end
 end

@@ -20,23 +20,12 @@ class Diary
   end
 
   def reading_time(wpm) 
-    time = 0
-    for i in 0...@list.length
-      time += @list[i].reading_time(wpm)
-    end
-    return time
+    return (count_words / wpm.to_f).ceil
   end
 
   def find_best_entry_for_reading_time(wpm, minutes)
-    words_readable = wpm * minutes
-
-    reading_times = []
-    for i in 0...@list.length
-      reading_times << @list[i].reading_time(wpm)
-    end
-
-    index = reading_times.find_index(reading_times.min_by { |time| (minutes - time).abs })
-
-    return "#{@list[index].title}: #{@list[index].contents}"
+    readable = @list.select { |entry| entry.reading_time(wpm) <= minutes}
+    fail "No readable entries" if readable.empty?
+    readable.max_by(&:count_words)
   end
 end

@@ -16,8 +16,4 @@ RSpec.describe Todo do
     todo = Todo.new("brush teeth")
     expect(todo.done?).to eq false
   end
-
-  it "returns error if task does not exist" do
-    expect{ todo.done? }.to raise_error "Task does not exist"
-  end
 end

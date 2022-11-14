@@ -1,0 +1,23 @@
+require 'todo'
+
+RSpec.describe Todo do
+  it "adds task and returns it" do
+    todo = Todo.new("brush teeth")
+    expect(todo.task).to eq "brush teeth"
+  end
+
+  it "returns true if task is done" do
+    todo = Todo.new("brush teeth")
+    todo.mark_done!
+    expect(todo.done?).to eq true
+  end
+
+  it "returns false if task is not done" do
+    todo = Todo.new("brush teeth")
+    expect(todo.done?).to eq false
+  end
+
+  it "returns error if task does not exist" do
+    expect{ todo.done? }.to raise_error "Task does not exist"
+  end
+end

@@ -12,6 +12,7 @@ initialize; reading_chunk
 
 Integration tests:
 initialize; add; all
+initialize; add; add; all
 initialize; add; count_words
 initialize; add; add; count_words
 initialize; add; add; reading_time

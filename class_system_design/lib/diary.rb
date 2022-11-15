@@ -12,6 +12,10 @@ class Diary
     @task_list << todo
   end
 
+  def list_todo
+    @task_list
+  end
+
   def list_diary
     @diary_list
   end
@@ -26,13 +30,8 @@ class Diary
     }
   end
 
-  def list_todo
-    @task_list
-  end
-
   def list_numbers
     @diary_list.each { |entry|
-      entry.phone_numbers
       entry.phone_numbers.each{ |number|
         @numbers << number
       }

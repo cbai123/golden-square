@@ -24,8 +24,8 @@ class DiaryEntry
 
   def phone_numbers
     @contents.scan(/[0-9]{11}/).each { |number|
-    @numbers << number
+      @numbers << number
     }
-    return @numbers.uniq!
+    return @numbers.uniq
   end
 end

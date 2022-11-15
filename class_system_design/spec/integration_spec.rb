@@ -50,6 +50,20 @@ RSpec.describe "integration" do
       diary.add_diary(entry)
       expect(diary.list_numbers).to eq ["07987654321", "07123456789"]
     end
+
+    it "returns unique list of phone numbers" do
+      diary = Diary.new
+      entry = DiaryEntry.new("title 2", "my friend's number is 07987654321. Mine is 07987654321")
+      diary.add_diary(entry)
+      expect(diary.list_numbers).to eq ["07987654321"]
+    end
+
+    it "doesn't include incorrect phone number" do
+      diary = Diary.new
+      entry = DiaryEntry.new("title 2", "my friend's number is 07987654321. Mine is 071234789")
+      diary.add_diary(entry)
+      expect(diary.list_numbers).to eq ["07987654321"]
+    end
   end
 
   it "adds and returns a list of todo entries" do

@@ -27,14 +27,6 @@ class InteractiveCalculator
 end
 
 
-
-
-
-
-
-
-
-
 # interactive_calculator = InteractiveCalculator.new(Kernel)
 # interactive_calculator.run
 

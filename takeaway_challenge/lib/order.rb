@@ -1,3 +1,5 @@
+require 'twilio-ruby'
+
 class Order
   def initialize(io)
     @io = io
@@ -30,6 +32,21 @@ class Order
       @io.puts "#{item.name} - £#{item.price}0"
     }
     receipt_total
+  end
+
+  def confirm
+    @io.puts "Please enter your number:"
+    @io.gets.chomp
+
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
+    @client = Twilio::REST::Client.new(account_sid, auth_token)
+
+    @client.messages.create(
+      body: 'Thank you! Your order was placed and will be delivered before 18:52',
+      from: '+19704382266',
+      to: '+447715271162'
+    )
   end
 
   private

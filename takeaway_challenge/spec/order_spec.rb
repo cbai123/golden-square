@@ -56,4 +56,30 @@ RSpec.describe Order do
       order.receipt
     end
   end
+
+  context "#confirm method" do
+    it "texts the correct method" do
+      io = double :io
+      item_1 = double :item, name: "Cod", price: 3.5
+      item_2 = double :item, name: "Sausage", price: 3.5
+      item_3 = double :item, name: "Halloumi", price: 3.0
+      item_4 = double :item, name: "Chips", price: 2.0
+      item_5 = double :item, name: "Peas", price: 1.5
+
+      order = Order.new(io)
+      order.add(item_1)
+      order.add(item_2)
+      order.add(item_3)
+      order.add(item_4)
+      order.add(item_5)
+
+      order.select("Cod")
+      order.select("Chips")
+      order.select("Peas")
+
+      expect(io).to receive(:puts).with("Please enter your number:")
+      expect(io).to receive(:gets).and_return("+447715271162")
+      order.confirm
+    end
+  end
 end

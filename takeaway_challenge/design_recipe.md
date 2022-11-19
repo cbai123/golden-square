@@ -127,8 +127,7 @@ item_1 = MenuItem.new("Cod", 3.50)
 item_2 = MenuItem.new("Sausage", 3.50)
 item_3 = MenuItem.new("Halloumi", 3.00)
 item_4 = MenuItem.new("Chips", 2.00)
-item_5 = MenuItem.new("Large Chips", 3.00)
-item_6 = MenuItem.new("Peas", 1.50)
+item_5 = MenuItem.new("Peas", 1.50)
 
 order = Order.new
 
@@ -143,25 +142,25 @@ a more granular level of detail._
 # 1
 io = double :io
 order = Order.new(io)
-io.menu # => puts menu
+order.menu # => puts menu
 
 # 2
 io = double :io
-order = Order.new
-io.menu
-io.select("Cod")
-io.select("Chips")
-io.select("Peas")
-io.receipt # => puts cod, chips, peas £7.00
+order = Order.new(io)
+order.menu
+order.select("Cod")
+order.select("Chips")
+order.select("Peas")
+order.receipt # => puts cod, chips, peas £7.00
 
 # 3
 io = double :io
-order = Order.new
-io.menu
-io.select("Cod")
-io.select("Chips")
-io.select("Peas")
-io.confirm # => puts what is your number?; gets phone number
+order = Order.new(io)
+order.menu
+order.select("Cod")
+order.select("Chips")
+order.select("Peas")
+order.confirm # => puts what is your number?; gets phone number
 
 ```
 

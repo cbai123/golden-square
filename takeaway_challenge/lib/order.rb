@@ -34,7 +34,7 @@ class Order
     receipt_total
   end
 
-  def confirm
+  def confirm(phone_number)
     @io.puts "Please enter your number:"
     @io.gets.chomp
 
@@ -45,7 +45,7 @@ class Order
     @client.messages.create(
       body: 'Thank you! Your order was placed and will be delivered before 18:52',
       from: '+19704382266',
-      to: '+447715271162'
+      to: phone_number
     )
   end
 
